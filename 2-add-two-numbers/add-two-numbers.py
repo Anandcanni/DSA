@@ -6,27 +6,23 @@
 class Solution:
     #Anand
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        l1_values = []
-        l2_values = []
-        curr= l1
-        while curr:
-            l1_values.append(str(curr.val))
-            curr = curr.next
+        head = ListNode(0)
+        r = head
+        c = 0
+        while l1 or l2:
+            v1 = l1.val if l1 else 0
+            v2 = l2.val if l2 else 0
+            s = v1 + v2 + c
+            c = s//10
+            head.next = ListNode(s%10)
+            head = head.next
+            if l1:
+                l1 =l1.next
+            if l2:
+                l2 = l2.next
+        if c :
+            head.next = ListNode(c)
+        return r.next
 
-        curr =l2
-        while curr:
-            l2_values.append(str(curr.val))
-            curr = curr.next
-        l1_values = l1_values[::-1]
-        l2_values = l2_values[::-1]
 
-        l1_nums = int(''.join(l1_values))
-        l2_nums = int(''.join(l2_values))
 
-        new_digit = str(l1_nums + l2_nums)[::-1]
-        dummy = ListNode()
-        curr =dummy
-        for d in new_digit:
-            curr.next = ListNode(int(d))
-            curr =curr.next
-        return dummy.next
