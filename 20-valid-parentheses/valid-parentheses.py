@@ -1,6 +1,6 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        hashmap = {')':'(',']':'[','}':'{'}
+        hashmap = {')':'(','}':'{',']':'['}
         stk = []
         for i in s:
             if i not in hashmap:
@@ -9,8 +9,10 @@ class Solution:
                 if not stk:
                     return False
                 else:
-                    popped =stk.pop()
+                    popped = stk.pop()
                     if popped != hashmap[i]:
                         return False
         return not stk
+       
+        
 
